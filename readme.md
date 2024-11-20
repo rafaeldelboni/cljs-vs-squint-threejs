@@ -6,16 +6,16 @@ An experiment to compare the same project created using ClojureScript (CLJS) and
 - [cljs](./cljs/)
 - [squint](./squint/)
 
-## Comparison
+# Comparison
 
-### cljs
+## CLJS
 
-#### Pros
+### Pros
 - Targets the JavaScript ecosystem with Clojure
 - Google Closure: an advanced whole-program optimizer
 - Primarily used with the JVM
 
-#### Cons
+### Cons
 - No support for ES6 modules
 - No async/await support
 - No support for JS destructuring
@@ -24,29 +24,29 @@ An experiment to compare the same project created using ClojureScript (CLJS) and
 - Difficulty in distributing compiled CLJS libraries on NPM for JS usage
 - JVM dependency
 
-### Squint
+## SQUINT
 
-#### Pros
+### Pros
 - Lightweight
 - Fast startup (no JVM)
 - Compiles directly to JS
 - Small bundle size
 - Compatible with ES6 treeshakers for optimization
 
-#### Cons
+### Cons
 - Setting up tests in your project can be tricky
 - Lazy iterable values are not cached
 - Cannot use existing CLJS libraries, only NPM
 - nRepl support is incomplete (numerous bugs)
 - No browser nRepl support (WIP)
 
-### Diff
+## Diff
 ```bash
 vimdiff squint/src/app/core.cljs cljs/src/app/core.cljs
 ```
 > Lines: 5, 19, 29, 73, 121, and 132.
 
-### Processing Times
+## Processing Times
 The Three.js project ported includes three different strategies to instantiate geometries in the scene and benchmarks their performance:
 
 | Method    | Count | cljs     | squint   |
@@ -58,13 +58,13 @@ The Three.js project ported includes three different strategies to instantiate g
 | MERGED    | 10000 | ~1180 ms | ~1172 ms |
 | NAIVE     | 10000 | ~75 ms   | ~78 ms   |
 
-### Bundle Sizes
+## Bundle Sizes
 | Bundle | JS     | Gzip   |
 | ------ | ------ | ------ |
 | squint | 528 kB | 134 kB |
 | cljs   | 646 kB | 161 kB |
 
-#### Why?
+### Why?
 **CLJS + app code bundled alone without libs is 113 kB (26 kB gzipped).**  
 **Pros:**
 - Includes all of Clojure's persistent/immutable CLJS data structures.
