@@ -1,5 +1,9 @@
 # Threejs vs squint
 
+## Requirements
+- [npm](https://www.npmjs.com/)
+- [babashka](https://babashka.org/)
+
 ## Instructions
 
 ```bash
@@ -9,6 +13,6 @@ npm install
 # Watch
 npm run watch
 
-# Release Build
+# Release Build (public/dist)
 npm run release
 ```

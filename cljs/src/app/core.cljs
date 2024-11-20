@@ -3,7 +3,7 @@
    ["three/addons/controls/OrbitControls.js" :refer [OrbitControls]]
    ["three/addons/libs/lil-gui.module.min.js" :refer [GUI]]
    ["three/addons/libs/stats.module.js" :default Stats]
-   ["three/addons/utils/BufferGeometryUtils.js" :as BufferGeometryUtils]
+   ["three/addons/utils/BufferGeometryUtils.js" :refer [mergeGeometries]]
    [three :refer [Object3D BufferGeometry BufferGeometryLoader Color InstancedMesh
                   Matrix4 Mesh MeshNormalMaterial PerspectiveCamera Quaternion
                   Scene Vector3 WebGLRenderer]]))
@@ -73,7 +73,7 @@
                                   ((randomize-matrix) matrix)
                                   (.applyMatrix4 instance-geometry matrix)))
                         (range (get-in-api :count)))
-        merged-geometry (BufferGeometryUtils/mergeGeometries (clj->js geometries))]
+        merged-geometry (mergeGeometries (clj->js geometries))]
     (.add scene (new Mesh merged-geometry material))))
 
 (defn- make-naive [geometry {:keys [scene material]}]

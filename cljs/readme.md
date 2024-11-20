@@ -1,5 +1,9 @@
 # Threejs vs cljs
 
+## Requirements
+- [npm](https://www.npmjs.com/)
+- [clojure](https://clojure.org/)
+
 ## Instructions
 
 ```bash
@@ -9,6 +13,6 @@ npm install
 # Watch on http://localhost:5000
 npm run watch
 
-# Release Build
+# Release Build (release/public)
 npm run release
 ```
