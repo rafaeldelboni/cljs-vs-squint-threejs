@@ -13,7 +13,8 @@
                                     "resources/public/js/lib.js"
                                     "resources/public/js/lib.bundle.js")
                                    (app.shadow.hooks/hashed-files
-                                    ["resources/public/js/core.js"])
+                                    ["resources/public/js/core.js"
+                                     "resources/public/js/lib.bundle.js"])
                                    (app.shadow.hooks/replace-hashed-files
                                     "resources/index.src.html"
                                     "resources/public/index.html")]}}}

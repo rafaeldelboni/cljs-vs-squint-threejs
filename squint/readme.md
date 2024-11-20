@@ -6,13 +6,23 @@
 
 ## Instructions
 
+### Bootstrap
 ```bash
-# Bootstrap
 npm install
+```
 
-# Watch
+### Watch
+```bash
 npm run watch
+```
 
-# Release Build (public/dist)
+### Release Build (public/dist)
+```bash
 npm run release
+```
+
+#### Serve Release bundle
+```bash
+gzip public/dist/assets/*.js
+npx http-server public/dist -g
 ```

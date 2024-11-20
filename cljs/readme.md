@@ -6,13 +6,23 @@
 
 ## Instructions
 
+### Bootstrap
 ```bash
-# Bootstrap
 npm install
+```
 
-# Watch on http://localhost:5000
+### Watch on http://localhost:5000
+```bash
 npm run watch
+```
 
-# Release Build (release/public)
+### Release Build (release/public)
+```bash
 npm run release
+```
+
+#### Serve Release bundle
+```bash
+gzip resources/public/js/*.js
+npx http-server resources/public -g
 ```
