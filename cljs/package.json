@@ -1,0 +1,14 @@
+{
+  "name": "tree-cljs",
+  "version": "1.0.0",
+  "scripts": {
+    "watch": "shadow-cljs watch app",
+    "release": "shadow-cljs release app"
+  },
+  "devDependencies": {
+    "shadow-cljs": "^2.28.19"
+  },
+  "dependencies": {
+    "three": "^0.170.0"
+  }
+}

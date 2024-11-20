@@ -1,0 +1,9 @@
+{:tasks
+ {dev:squint (shell "npx squint watch")
+  dev:vite (shell "npx vite public --config=vite.config.mjs")
+  -dev {:depends [dev:squint dev:vite]}
+  dev (run '-dev {:parallel true})
+
+  build:squint (shell "npx squint compile")
+  build:vite (shell "npx vite build public --config=vite.config.mjs")
+  build {:depends [build:squint build:vite]}}}

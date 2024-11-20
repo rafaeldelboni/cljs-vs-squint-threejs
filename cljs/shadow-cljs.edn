@@ -1,0 +1,19 @@
+{:source-paths ["src" "dev"]
+ :dependencies []
+ :dev-http {5000 ["resources/public"]}
+ :builds {:app {:target           :browser
+                :output-dir       "resources/public/js"
+                :asset-path       "/js"
+                :modules {:core {:entries [app.core]}}
+                ; bundling
+                :js-options       {:js-provider :external
+                                   :external-index "resources/public/js/lib.js"
+                                   :external-index-format :esm}
+                :build-hooks      [(app.shadow.hooks/esbuild
+                                    "resources/public/js/lib.js"
+                                    "resources/public/js/lib.bundle.js")
+                                   (app.shadow.hooks/hashed-files
+                                    ["resources/public/js/core.js"])
+                                   (app.shadow.hooks/replace-hashed-files
+                                    "resources/index.src.html"
+                                    "resources/public/index.html")]}}}

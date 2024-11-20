@@ -1,0 +1,17 @@
+{
+  "name": "tree-squint",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "watch": "bb dev",
+    "release": "bb build"
+  },
+  "devDependencies": {
+    "rollup-plugin-visualizer": "^5.12.0",
+    "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "squint-cljs": "^0.8.123",
+    "three": "^0.170.0"
+  }
+}
