@@ -1,6 +1,6 @@
 # cljs VS squint
 
-An experiment to compare the same project created using ClojureScript (CLJS) and Squint by porting a Three.js example [instancing performance](https://threejs.org/examples/#webgl_instancing_performance)
+An experiment to compare the same project created using ClojureScript (CLJS) and Squint by porting a Three.js example: [Instancing Performance](https://threejs.org/examples/#webgl_instancing_performance).
 
 ## Repositories
 - [cljs](./cljs/)
@@ -8,46 +8,48 @@ An experiment to compare the same project created using ClojureScript (CLJS) and
 
 ## Comparison
 
-### Cljs
+### cljs
 
 #### Pros
-- Targets JavaScript ecosystem with Clojure
-- Google Closure: advanced whole program optimizer
-- Mostly used from JVM
+- Targets the JavaScript ecosystem with Clojure
+- Google Closure: an advanced whole-program optimizer
+- Primarily used with the JVM
+
 #### Cons
 - No support for ES6 modules
-- Async/await
-- No support to JS destructuring
+- No async/await support
+- No support for JS destructuring
 - No support for JSX
-- No compiling ad-hoc small snippets (scripting, on the fly compilation)
-- Hard to distribute compiled CLJS libraries on NPM for usage from JS
+- Cannot compile ad-hoc small snippets (scripting, on-the-fly compilation)
+- Difficulty in distributing compiled CLJS libraries on NPM for JS usage
 - JVM dependency
 
 ### Squint
 
 #### Pros
-- Light-weight
-- Fast starup (no JVM)
+- Lightweight
+- Fast startup (no JVM)
 - Compiles directly to JS
 - Small bundle size
-- Can be optimized by ES6 treeshakers
+- Compatible with ES6 treeshakers for optimization
+
 #### Cons
-- Setup tests in your project can be tricky
-- Lazy iterable values results are not cached
-- No support to use existing cljs libraries only NPM
-- No support fully working nRepl support (Lots of bugs)
-- No browser nRepl (WIP)
+- Setting up tests in your project can be tricky
+- Lazy iterable values are not cached
+- Cannot use existing CLJS libraries, only NPM
+- nRepl support is incomplete (numerous bugs)
+- No browser nRepl support (WIP)
 
 ### Diff
 ```bash
 vimdiff squint/src/app/core.cljs cljs/src/app/core.cljs
 ```
-> Lines: 5, 19, 29, 73, 121 and 132.
+> Lines: 5, 19, 29, 73, 121, and 132.
 
-### Processing times
-The threejs project ported has 3 different strategies to instanciate geometries in the scene and does some benchmarks between each method:
+### Processing Times
+The Three.js project ported includes three different strategies to instantiate geometries in the scene and benchmarks their performance:
 
-| method    | count | cljs     | squint   |
+| Method    | Count | cljs     | squint   |
 | --------- | ----- | -------- | -------- |
 | INSTANCED | 1000  | ~3 ms    | ~2 ms    |
 | MERGED    | 1000  | ~100 ms  | ~104 ms  |
@@ -57,24 +59,25 @@ The threejs project ported has 3 different strategies to instanciate geometries 
 | NAIVE     | 10000 | ~75 ms   | ~78 ms   |
 
 ### Bundle Sizes
-| bundle | js     | gzip   |
+| Bundle | JS     | Gzip   |
 | ------ | ------ | ------ |
 | squint | 528 kB | 134 kB |
 | cljs   | 646 kB | 161 kB |
 
 #### Why?
-**Cljs + app code bundled alone without libs is 113 kB (26 kB gzipped).**  
-Pros:
-- This is because it has all Clojure's persistent/immutable CLJS data structures.
-Cons:
-- All of ClojureScript is included
-- Google Closure does not emit code that can be optimized by ES6 treeshakers like esbuild, webpack
-- Everything is wrapped in one global object, instead of ES6-idiomatic code
+**CLJS + app code bundled alone without libs is 113 kB (26 kB gzipped).**  
+**Pros:**
+- Includes all of Clojure's persistent/immutable CLJS data structures.
+
+**Cons:**
+- All of ClojureScript is included.
+- Google Closure does not emit code optimized for ES6 treeshakers like esbuild or webpack.
+- Everything is wrapped in one global object instead of ES6-idiomatic code.
 
 **Squint + app code bundled is less than 15 kB without minification.**  
-Pros:
-- CLJS syntax but compiles directly to JS
-- More direct JS interop
-Cons:
-- No immutability, just JS objects all the way down
+**Pros:**
+- Maintains CLJS syntax but compiles directly to JS.
+- Provides more direct JS interop.
 
+**Cons:**
+- No immutability; uses plain JS objects throughout.
