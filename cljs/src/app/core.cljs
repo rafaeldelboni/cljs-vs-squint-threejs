@@ -26,9 +26,7 @@
     container))
 
 (defn- get-in-api [ks]
-  (-> (:api @state)
-      (js->clj :keywordize-keys true)
-      ks))
+  (-> (:api @state) (js->clj :keywordize-keys true) ks))
 
 (defn- randomize-matrix []
   (let [position (Vector3. (- (* (Math/random) 40) 20)
@@ -52,12 +50,11 @@
 (defn- clean []
   (let [^Scene scene (:scene @state)]
     (when scene
-      (traverse scene
-                (fn [^Object3D object]
-                  (when (.-isMesh object)
-                    (.dispose ^Material (.-material object))
-                    (.dispose ^BufferGeometry (.-geometry object))
-                    (.remove scene object)))))))
+      (traverse scene (fn [^Object3D object]
+                        (when (and object (instance? Mesh object))
+                          (.dispose ^Material (.-material object))
+                          (.dispose ^BufferGeometry (.-geometry object))
+                          (.remove scene object)))))))
 
 (defn- make-instanced [geometry {:keys [scene material]}]
   (let [matrix (new Matrix4)
@@ -79,8 +76,8 @@
 (defn- make-naive [geometry {:keys [scene material]}]
   (let [matrix (new Matrix4)]
     (dotimes [_i (get-in-api :count)]
+      ((randomize-matrix) matrix)
       (let [mesh (new Mesh geometry material)]
-        ((randomize-matrix) matrix)
         (.applyMatrix4 mesh matrix)
         (.add scene mesh)))))
 
