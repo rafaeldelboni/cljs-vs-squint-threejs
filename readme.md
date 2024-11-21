@@ -1,4 +1,4 @@
-# cljs VS squint
+# Cljs VS Squint
 
 An experiment to compare the same project created using ClojureScript (CLJS) and Squint by porting a Three.js example: [Instancing Performance](https://threejs.org/examples/#webgl_instancing_performance).
 
@@ -8,7 +8,7 @@ An experiment to compare the same project created using ClojureScript (CLJS) and
 
 # Comparison
 
-## CLJS
+## Cljs
 
 ### Pros
 - Targets the JavaScript ecosystem with Clojure
@@ -16,6 +16,7 @@ An experiment to compare the same project created using ClojureScript (CLJS) and
 - Primarily used with the JVM
 
 ### Cons
+- Setting up treeshakers in your project can be tricky
 - No support for ES6 modules
 - No async/await support
 - No support for JS destructuring
@@ -24,7 +25,7 @@ An experiment to compare the same project created using ClojureScript (CLJS) and
 - Difficulty in distributing compiled CLJS libraries on NPM for JS usage
 - JVM dependency
 
-## SQUINT
+## Squint
 
 ### Pros
 - Lightweight
